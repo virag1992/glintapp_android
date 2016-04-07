@@ -104,4 +104,26 @@
         <attr name="matProg_barWidth" format="dimension" />
         <attr name="matProg_linearProgress" format="boolean" />
     </declare-styleable>
+
+        <declare-styleable name="GradientView">
+            <attr name="pointerDrawable" format="reference"/>
+            <attr name="radiuss" format="dimension"/>
+            <attr name="lockPointerInBounds" format="boolean"/>
+        </declare-styleable>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </resources>

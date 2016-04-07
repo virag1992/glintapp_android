@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="200dip"
+    android:layout_height="wrap_content"
     android:background="#EDEDED">
 
     <TextView
@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:src="@drawable/card" />
+                android:src="@drawable/model" />
 
             <TextView
                 android:id="@+id/txtCarName"
@@ -61,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:src="@drawable/card" />
+                android:src="@drawable/carnumber" />
 
             <TextView
                 android:id="@+id/txtCarNumber"
@@ -90,7 +90,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:src="@drawable/card" />
+                android:src="@drawable/nickname" />
 
             <TextView
                 android:id="@+id/txtCarModelType"
@@ -118,15 +118,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:src="@drawable/card" />
+                android:src="@drawable/color" />
 
             <ImageView
                 android:id="@+id/img5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/img4"
-                android:src="@drawable/card" />
+                android:background="@drawable/color_dot"/>
 
             <TextView
                 android:id="@+id/txtCarColor"
@@ -135,7 +135,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/img5"
                 android:padding="5dip"
-                android:text="White" />
+                android:text="Red" />
         </RelativeLayout>
     </LinearLayout>
 
