@@ -1,4 +1,4 @@
-package com.cooltechworks.creditcarddesign;
+package app.glintcarwash.com.glintapp;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -14,6 +14,10 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.cooltechworks.creditcarddesign.CardSelector;
+import com.cooltechworks.creditcarddesign.CreditCardUtils;
+import com.cooltechworks.creditcarddesign.FlipAnimator;
 
 import io.codetail.animation.SupportAnimator;
 import io.codetail.animation.ViewAnimationUtils;
@@ -40,14 +44,14 @@ public class CreditCardView extends FrameLayout {
         CardSelector getCardSelector(String cardNumber);
     }
 
-    private static final int TEXTVIEW_CARD_HOLDER_ID = R.id.front_card_holder_name;
-    private static final int TEXTVIEW_CARD_EXPIRY_ID = R.id.front_card_expiry;
-    private static final int TEXTVIEW_CARD_NUMBER_ID = R.id.front_card_number;
-    private static final int TEXTVIEW_CARD_CVV_ID = R.id.back_card_cvv;
-    private static final int FRONT_CARD_ID = R.id.front_card_container;
-    private static final int BACK_CARD_ID = R.id.back_card_container;
-    private static final int FRONT_CARD_OUTLINE_ID = R.id.front_card_outline;
-    private static final int BACK_CARD_OUTLINE_ID = R.id.back_card_outline;
+    private static final int TEXTVIEW_CARD_HOLDER_ID = com.cooltechworks.creditcarddesign.R.id.front_card_holder_name;
+    private static final int TEXTVIEW_CARD_EXPIRY_ID = com.cooltechworks.creditcarddesign.R.id.front_card_expiry;
+    private static final int TEXTVIEW_CARD_NUMBER_ID = com.cooltechworks.creditcarddesign.R.id.front_card_number;
+    private static final int TEXTVIEW_CARD_CVV_ID = com.cooltechworks.creditcarddesign.R.id.back_card_cvv;
+    private static final int FRONT_CARD_ID = com.cooltechworks.creditcarddesign.R.id.front_card_container;
+    private static final int BACK_CARD_ID = com.cooltechworks.creditcarddesign.R.id.back_card_container;
+    private static final int FRONT_CARD_OUTLINE_ID = com.cooltechworks.creditcarddesign.R.id.front_card_outline;
+    private static final int BACK_CARD_OUTLINE_ID = com.cooltechworks.creditcarddesign.R.id.back_card_outline;
 
 
     private int mCurrentDrawable;
@@ -74,12 +78,12 @@ public class CreditCardView extends FrameLayout {
 
     private void init() {
 
-        mCurrentDrawable = R.drawable.card_color_round_rect_default;
+        mCurrentDrawable = com.cooltechworks.creditcarddesign.R.drawable.card_color_round_rect_default;
         mRawCardNumber = "";
 
         LayoutInflater inflater = (LayoutInflater) getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.view_creditcard, this, true);
+        inflater.inflate(com.cooltechworks.creditcarddesign.R.layout.view_creditcard, this, true);
 
     }
 
@@ -88,14 +92,14 @@ public class CreditCardView extends FrameLayout {
         init();
 
         TypedArray a = getContext().obtainStyledAttributes(attrs,
-                R.styleable.creditcard, 0, 0);
+                com.cooltechworks.creditcarddesign.R.styleable.creditcard, 0, 0);
 
 
-        String cardHolderName = a.getString(R.styleable.creditcard_card_holder_name);
-        String expiry = a.getString(R.styleable.creditcard_card_expiration);
-        String cardNumber = a.getString(R.styleable.creditcard_card_number);
-        int cvv = a.getInt(R.styleable.creditcard_cvv, 0);
-        int cardSide = a.getInt(R.styleable.creditcard_card_side,CreditCardUtils.CARD_SIDE_FRONT);
+        String cardHolderName = a.getString(com.cooltechworks.creditcarddesign.R.styleable.creditcard_card_holder_name);
+        String expiry = a.getString(com.cooltechworks.creditcarddesign.R.styleable.creditcard_card_expiration);
+        String cardNumber = a.getString(com.cooltechworks.creditcarddesign.R.styleable.creditcard_card_number);
+        int cvv = a.getInt(com.cooltechworks.creditcarddesign.R.styleable.creditcard_cvv, 0);
+        int cardSide = a.getInt(com.cooltechworks.creditcarddesign.R.styleable.creditcard_card_side, CreditCardUtils.CARD_SIDE_FRONT);
 
         setCardNumber(cardNumber);
         setCVV(cvv);
@@ -115,13 +119,13 @@ public class CreditCardView extends FrameLayout {
 
     private void flip(final boolean ltr, boolean isImmediate) {
 
-        View layoutContainer = findViewById(R.id.card_outline_container);
+        View layoutContainer = findViewById(com.cooltechworks.creditcarddesign.R.id.card_outline_container);
         View frontView = findViewById(FRONT_CARD_OUTLINE_ID);
         View backView = findViewById(BACK_CARD_OUTLINE_ID);
 
         final View frontContentView = findViewById(FRONT_CARD_ID);
         final View backContentView = findViewById(BACK_CARD_ID);
-        View layoutContentContainer = findViewById(R.id.card_container);
+        View layoutContentContainer = findViewById(com.cooltechworks.creditcarddesign.R.id.card_container);
 
 
         if(isImmediate) {
@@ -168,7 +172,7 @@ public class CreditCardView extends FrameLayout {
 
         String newCardNumber = mRawCardNumber;
         for(int i=mRawCardNumber.length();i<16;i++) {
-            newCardNumber +=CreditCardUtils.CHAR_X;
+            newCardNumber += CreditCardUtils.CHAR_X;
         }
 
         String cardNumber = CreditCardUtils.handleCardNumber(newCardNumber, CreditCardUtils.DOUBLE_SPACE_SEPERATOR);
@@ -247,10 +251,10 @@ public class CreditCardView extends FrameLayout {
 
         CardSelector card = selectCard();
 
-        View cardContainer = findViewById(R.id.card_outline_container);
+        View cardContainer = findViewById(com.cooltechworks.creditcarddesign.R.id.card_outline_container);
 
-        View chipContainer = findViewById(R.id.chip_container);
-        View chipInner = findViewById(R.id.chip_inner_view);
+        View chipContainer = findViewById(com.cooltechworks.creditcarddesign.R.id.chip_container);
+        View chipInner = findViewById(com.cooltechworks.creditcarddesign.R.id.chip_inner_view);
 
         View cardBack =  findViewById(BACK_CARD_OUTLINE_ID);
         View cardFront = findViewById(FRONT_CARD_OUTLINE_ID);
@@ -259,14 +263,14 @@ public class CreditCardView extends FrameLayout {
         chipContainer.setBackgroundResource(card.getResChipOuterId());
         chipInner.setBackgroundResource(card.getResChipInnerId());
 
-        ImageView frontLogoImageView = (ImageView) cardContainer.findViewById(R.id.logo_img);
+        ImageView frontLogoImageView = (ImageView) cardContainer.findViewById(com.cooltechworks.creditcarddesign.R.id.logo_img);
         frontLogoImageView.setImageResource(card.getResLogoId());
 
-        ImageView centerImageView = (ImageView) cardContainer.findViewById(R.id.logo_center_img);
+        ImageView centerImageView = (ImageView) cardContainer.findViewById(com.cooltechworks.creditcarddesign.R.id.logo_center_img);
         centerImageView.setImageResource(card.getResCenterImageId());
 
 
-        ImageView backLogoImageView = (ImageView) findViewById(BACK_CARD_ID).findViewById(R.id.logo_img);
+        ImageView backLogoImageView = (ImageView) findViewById(BACK_CARD_ID).findViewById(com.cooltechworks.creditcarddesign.R.id.logo_img);
         backLogoImageView.setImageResource(card.getResLogoId());
 
         cardBack.setBackgroundResource(card.getResCardId());
@@ -279,7 +283,7 @@ public class CreditCardView extends FrameLayout {
         CardSelector card = selectCard();
 
         View cardFront = findViewById(FRONT_CARD_OUTLINE_ID);
-        View cardContainer = findViewById(R.id.card_outline_container);
+        View cardContainer = findViewById(com.cooltechworks.creditcarddesign.R.id.card_outline_container);
 
         paintCard();
 

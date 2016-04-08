@@ -60,24 +60,7 @@
     <color name="picker_background">#ff7c7c7c</color>
 
 
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="padding_normal">12dp</dimen>
-    <dimen name="padding_xlarge">18dp</dimen>
-    <dimen name="padding_large">16dp</dimen>
-    <dimen name="padding_small">2dp</dimen>
-    <dimen name="text_size_normal">19sp</dimen>
-    <dimen name="text_size_normal_plus">20sp</dimen>
-    <dimen name="margin_small">8dp</dimen>
-    <dimen name="margin_large">16dp</dimen>
-    <dimen name="margin_xlarge">20dp</dimen>
-    <dimen name="text_size_small">16sp</dimen>
 
-
-    <string name="next">NEXT</string>
-    <string name="previous">PREVIOUS</string>
-    <string name="done">DONE</string>
-    <string name="title_activity_main">CreditCardView Sample</string>
 
 
 
@@ -87,9 +70,33 @@
     <color name="text_shadow">#7F000000</color>
     <color name="text_shadow_white">#FFFFFF</color>
 
-    <dimen name="card_radius">2dp</dimen>
-    <dimen name="cardview_default_elevation">1dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
+
+
+
+    <color name="green_continue">#1fc055</color>
+    <color name="chip_color">#d4edfa</color>
+    <color name="chip_inner_color">#e0e4e4</color>
+    <color name="chip_yellow_color">#fbe191</color>
+    <color name="chip_yellow_inner_color">#eed280</color>
+
+    <color name="purple_color">#5515a9</color>
+    <color name="purple_color_gradient">#651dc4</color>
+
+    <color name="green_color">#108b4c</color>
+    <color name="green_color_gradient">#1caf57</color>
+
+    <color name="blue_color">#5D8BF2</color>
+    <color name="blue_color_gradient">#3545AE</color>
+
+    <color name="pink_color">#d04c84</color>
+    <color name="pink_color_gradient">#d04882</color>
+
+    <color name="default_color">#363434</color>
+    <color name="default_color_gradient">#434141</color>
+
+    <color name="brown_color">#800000</color>
+    <color name="brown_color_gradient">#A52A2A</color>
+
 
 
 </resources>

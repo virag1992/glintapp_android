@@ -26,7 +26,7 @@ public class ColorPickerActivity extends BaseActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent color_picker = new Intent(getApplicationContext(),CreditActivity.class);
+                Intent color_picker = new Intent(getApplicationContext(),CreditCardActivity.class);
                 startActivity(color_picker);
 
             }

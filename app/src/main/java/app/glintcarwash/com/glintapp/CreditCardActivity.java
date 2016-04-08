@@ -6,23 +6,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.cooltechworks.creditcarddesign.CardEditActivity;
+import com.cooltechworks.creditcarddesign.*;
 import com.cooltechworks.creditcarddesign.CreditCardUtils;
 import com.cooltechworks.creditcarddesign.CreditCardView;
 
-public class CreditActivity extends AppCompatActivity {
+public class CreditCardActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_credit);
-
-
+        setContentView(R.layout.credit_card);
         findViewById(R.id.add_card).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CreditActivity.this, CardEditActivity.class);
+                Intent intent = new Intent(CreditCardActivity.this, CardEditActivity.class);
                 startActivityForResult(intent, 0);
             }
         });
@@ -35,12 +32,12 @@ public class CreditActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                CreditCardView creditCardView = (CreditCardView) v;
+               CreditCardView creditCardView = (CreditCardView) v;
                 String cardNumber = creditCardView.getCardNumber();
                 String expiry = creditCardView.getExpiry();
                 String cardHolderName = creditCardView.getCardHolderName();
 
-                Intent intent = new Intent(CreditActivity.this, CardEditActivity.class);
+                Intent intent = new Intent(CreditCardActivity.this, CardEditActivity.class);
                 intent.putExtra(CreditCardUtils.EXTRA_CARD_HOLDER_NAME, cardHolderName);
                 intent.putExtra(CreditCardUtils.EXTRA_CARD_NUMBER, cardNumber);
                 intent.putExtra(CreditCardUtils.EXTRA_CARD_EXPIRY, expiry);
@@ -54,20 +51,21 @@ public class CreditActivity extends AppCompatActivity {
     }
 
 
+
     public void onActivityResult(int reqCode, int resultCode, Intent data) {
 
-        if (resultCode == RESULT_OK) {
+        if(resultCode == RESULT_OK) {
 
             LinearLayout cardContainer = (LinearLayout) findViewById(R.id.card_container);
 
 
-            String name = data.getStringExtra(CreditCardUtils.EXTRA_CARD_HOLDER_NAME);
-            String cardNumber = data.getStringExtra(CreditCardUtils.EXTRA_CARD_NUMBER);
-            String expiry = data.getStringExtra(CreditCardUtils.EXTRA_CARD_EXPIRY);
+            String name = data.getStringExtra(com.cooltechworks.creditcarddesign.CreditCardUtils.EXTRA_CARD_HOLDER_NAME);
+            String cardNumber = data.getStringExtra(com.cooltechworks.creditcarddesign.CreditCardUtils.EXTRA_CARD_NUMBER);
+            String expiry = data.getStringExtra(com.cooltechworks.creditcarddesign.CreditCardUtils.EXTRA_CARD_EXPIRY);
             String cvv = data.getStringExtra(CreditCardUtils.EXTRA_CARD_CVV);
 
 
-            if (reqCode == 0) {
+            if(reqCode == 0) {
 
 
                 CreditCardView creditCardView = new CreditCardView(this);
@@ -82,7 +80,9 @@ public class CreditActivity extends AppCompatActivity {
                 initListener(index, creditCardView);
 
 
-            } else {
+
+            }
+            else {
 
                 CreditCardView creditCardView = (CreditCardView) cardContainer.getChildAt(reqCode);
 
@@ -96,5 +96,5 @@ public class CreditActivity extends AppCompatActivity {
 
 
     }
-}
 
+}

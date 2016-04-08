@@ -1,4 +1,4 @@
-package com.cooltechworks.creditcarddesign;
+package app.glintcarwash.com.glintapp;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,14 +14,15 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.cooltechworks.creditcarddesign.CreditCardUtils;
+import com.cooltechworks.creditcarddesign.CreditCardView;
 import com.cooltechworks.creditcarddesign.pager.CardFragmentAdapter;
 import com.cooltechworks.creditcarddesign.pager.CardFragmentAdapter.ICardEntryCompleteListener;
 
 import static com.cooltechworks.creditcarddesign.CreditCardUtils.EXTRA_CARD_CVV;
 import static com.cooltechworks.creditcarddesign.CreditCardUtils.EXTRA_CARD_EXPIRY;
 import static com.cooltechworks.creditcarddesign.CreditCardUtils.EXTRA_CARD_HOLDER_NAME;
-import static com.cooltechworks.creditcarddesign.CreditCardUtils.*;
-
+import static com.cooltechworks.creditcarddesign.CreditCardUtils.EXTRA_CARD_NUMBER;
 
 
 public class CardEditActivity extends AppCompatActivity {
@@ -39,13 +40,13 @@ public class CardEditActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_card_edit);
+        setContentView(com.cooltechworks.creditcarddesign.R.layout.activity_card_edit);
 
-        findViewById(R.id.next).setOnClickListener(new View.OnClickListener() {
+        findViewById(com.cooltechworks.creditcarddesign.R.id.next).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                ViewPager pager = (ViewPager) findViewById(R.id.card_field_container_pager);
+                ViewPager pager = (ViewPager) findViewById(com.cooltechworks.creditcarddesign.R.id.card_field_container_pager);
 
                 int max = pager.getAdapter().getCount();
 
@@ -58,7 +59,7 @@ public class CardEditActivity extends AppCompatActivity {
                 }
             }
         });
-        findViewById(R.id.previous).setOnClickListener(new View.OnClickListener() {
+        findViewById(com.cooltechworks.creditcarddesign.R.id.previous).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showPrevious();
@@ -66,7 +67,7 @@ public class CardEditActivity extends AppCompatActivity {
         });
 
         setKeyboardVisibility(true);
-        mCreditCardView = (CreditCardView) findViewById(R.id.credit_card_view);
+        mCreditCardView = (CreditCardView) findViewById(com.cooltechworks.creditcarddesign.R.id.credit_card_view);
 
 
         if(savedInstanceState != null) {
@@ -106,22 +107,22 @@ public class CardEditActivity extends AppCompatActivity {
 
     public void refreshNextButton() {
 
-        ViewPager pager = (ViewPager) findViewById(R.id.card_field_container_pager);
+        ViewPager pager = (ViewPager) findViewById(com.cooltechworks.creditcarddesign.R.id.card_field_container_pager);
 
         int max = pager.getAdapter().getCount();
 
-        int text = R.string.next;
+        int text = com.cooltechworks.creditcarddesign.R.string.next;
 
         if(pager.getCurrentItem() == max -1) {
-            text = R.string.done;
+            text = com.cooltechworks.creditcarddesign.R.string.done;
         }
 
-        ((TextView)findViewById(R.id.next)).setText(text);
+        ((TextView)findViewById(com.cooltechworks.creditcarddesign.R.id.next)).setText(text);
     }
 
     public void loadPager() {
 
-        ViewPager pager = (ViewPager) findViewById(R.id.card_field_container_pager);
+        ViewPager pager = (ViewPager) findViewById(com.cooltechworks.creditcarddesign.R.id.card_field_container_pager);
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
@@ -202,7 +203,7 @@ public class CardEditActivity extends AppCompatActivity {
 
     public void showPrevious() {
 
-        final ViewPager pager = (ViewPager) findViewById(R.id.card_field_container_pager);
+        final ViewPager pager = (ViewPager) findViewById(com.cooltechworks.creditcarddesign.R.id.card_field_container_pager);
         int currentIndex = pager.getCurrentItem();
 
         if (currentIndex - 1 >= 0) {
@@ -214,7 +215,7 @@ public class CardEditActivity extends AppCompatActivity {
 
     public void showNext() {
 
-        final ViewPager pager = (ViewPager) findViewById(R.id.card_field_container_pager);
+        final ViewPager pager = (ViewPager) findViewById(com.cooltechworks.creditcarddesign.R.id.card_field_container_pager);
         CardFragmentAdapter adapter = (CardFragmentAdapter) pager.getAdapter();
 
         int max = adapter.getCount();
@@ -256,7 +257,7 @@ public class CardEditActivity extends AppCompatActivity {
         // Checks whether a hardware keyboard is available
         if (newConfig.hardKeyboardHidden == Configuration.HARDKEYBOARDHIDDEN_NO) {
 
-            LinearLayout parent = (LinearLayout) findViewById(R.id.parent);
+            LinearLayout parent = (LinearLayout) findViewById(com.cooltechworks.creditcarddesign.R.id.parent);
             RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) parent.getLayoutParams();
             layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, 0);
             parent.setLayoutParams(layoutParams);
@@ -266,7 +267,7 @@ public class CardEditActivity extends AppCompatActivity {
 
     private void setKeyboardVisibility(boolean visible) {
 
-        final EditText editText = (EditText) findViewById(R.id.card_number_field);
+        final EditText editText = (EditText) findViewById(com.cooltechworks.creditcarddesign.R.id.card_number_field);
 
 
         if (!visible) {

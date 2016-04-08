@@ -32,7 +32,7 @@
             android:layout_margin="@dimen/gap_large"
             android:padding="@dimen/gap_small"
             android:layout_width="match_parent"
-            android:layout_height="300dp"/>
+            android:layout_height="250dp"/>
 
         <app.glintcarwash.com.glintapp.GradientView
             android:id="@+id/bottom"
@@ -43,7 +43,7 @@
             app:radiuss="@dimen/radius"
             app:pointerDrawable="@drawable/pointer_arrows"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="100dp"/>
 
     </LinearLayout>
 

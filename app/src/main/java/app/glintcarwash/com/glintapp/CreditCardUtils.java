@@ -1,6 +1,5 @@
-package com.cooltechworks.creditcarddesign;
+package app.glintcarwash.com.glintapp;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
 
 import java.util.Calendar;
