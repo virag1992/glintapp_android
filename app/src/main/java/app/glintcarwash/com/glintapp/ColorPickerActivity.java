@@ -15,6 +15,7 @@ public class ColorPickerActivity extends BaseActivity {
     private TextView mTextView;
     private Drawable mIcon;
     Button btnSave;
+    String clr;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,8 +27,10 @@ public class ColorPickerActivity extends BaseActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent color_picker = new Intent(getApplicationContext(),CreditCardActivity.class);
-                startActivity(color_picker);
+                Intent color_picker = new Intent();
+                color_picker.putExtra("color",clr);
+                setResult(RESULT_OK, color_picker);
+                finish();
 
             }
         });
@@ -38,6 +41,7 @@ public class ColorPickerActivity extends BaseActivity {
         mBottom.setOnColorChangedListener(new GradientView.OnColorChangedListener() {
             @Override
             public void onColorChanged(GradientView view, int color) {
+                clr = String.valueOf("#" + Integer.toHexString(color));
                 mTextView.setTextColor(color);
                 mTextView.setText("#" + Integer.toHexString(color));
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

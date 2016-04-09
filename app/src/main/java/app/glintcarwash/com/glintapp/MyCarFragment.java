@@ -201,8 +201,8 @@ public class MyCarFragment extends Fragment {
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent color_picker = new Intent(getActivity(),ColorPickerActivity.class);
-                    startActivity(color_picker);
+//                    Intent color_picker = new Intent(getActivity(),ColorPickerActivity.class);
+//                    startActivity(color_picker);
                 }
             });
             return convertView;

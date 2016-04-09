@@ -1,6 +1,7 @@
 package app.glintcarwash.com.glintapp;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -28,6 +29,11 @@ public class VerifyActivity extends BaseActivity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
+		if(v==btnSignin){
+			Intent i = new Intent(VerifyActivity.this,
+					MainActivity.class);
+			startActivity(i);
+		}
 
 	}
 }

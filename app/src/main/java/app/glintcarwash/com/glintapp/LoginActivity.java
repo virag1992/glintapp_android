@@ -70,11 +70,11 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
         } else if (v.equals(btnSignin)) {
             if (btnSignin.getText().toString().equalsIgnoreCase("SIGN IN")) {
                 Intent i = new Intent(LoginActivity.this,
-                        MainActivity.class);
+                        VerifyActivity.class);
                 startActivity(i);
             } else {
                 Intent i = new Intent(LoginActivity.this,
-                        MainActivity.class);
+                        VerifyActivity.class);
                 startActivity(i);
             }
         } else if (v.equals(txtForgotPassword)) {

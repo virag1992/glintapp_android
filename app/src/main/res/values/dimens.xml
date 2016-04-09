@@ -69,7 +69,6 @@
     <!--<dimen name="widget_margin">8dp</dimen>-->
 
 
-
     <dimen name="padding_normal">12dp</dimen>
     <dimen name="padding_xlarge">18dp</dimen>
     <dimen name="padding_large">16dp</dimen>
@@ -81,8 +80,6 @@
     <dimen name="margin_large">16dp</dimen>
     <dimen name="margin_xlarge">20dp</dimen>
     <dimen name="text_size_small">16sp</dimen>
-
-
 
 
     <dimen name="card_radius">2dp</dimen>
@@ -99,7 +96,6 @@
     <dimen name="logo_height_normal">48dp</dimen>
     <dimen name="center_image_width">75dp</dimen>
     <dimen name="center_image_height">75dp</dimen>
-
 
 
 </resources>

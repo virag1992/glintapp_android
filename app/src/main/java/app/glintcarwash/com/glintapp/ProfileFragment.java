@@ -2,6 +2,8 @@ package app.glintcarwash.com.glintapp;
 
 import android.app.ActionBar;
 import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -11,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -21,9 +25,10 @@ import global.ProgressWheel;
 /**
  * Created by ACER on 05-04-2016.
  */
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment implements View.OnClickListener {
     Dialog DialogForTransaction;
     ProgressWheel progressWheel;
+    LinearLayout llAddcar,llAddcard;
 
     ArrayList<Integer> m_draw = new ArrayList<Integer>();
 
@@ -37,7 +42,12 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.activity_splash, null);
+        View v= inflater.inflate(R.layout.account_setup,container,false);
+        llAddcar = (LinearLayout) v.findViewById(R.id.llAddcar);
+        llAddcard = (LinearLayout) v.findViewById(R.id.llAddcard);
+        llAddcar.setOnClickListener(this);
+        llAddcard.setOnClickListener(this);
+        return v;
     }
 
     @Override
@@ -121,6 +131,17 @@ public class ProfileFragment extends Fragment {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v==llAddcard){
+            Intent start = new Intent(getActivity(),CreditCardActivity.class);
+            startActivity(start);
+        }else if(v==llAddcar){
+            Intent start = new Intent(getActivity(),AddCarActivity.class);
+            startActivity(start);
         }
     }
 }
