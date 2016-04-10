@@ -2,25 +2,20 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/backgroumd"
     android:layout_height="match_parent"
-    android:background="@drawable/homebg"
-    tools:context="app.glintcarwash.com.glintapp.OrderActivity">
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/order_ic"
-        android:layout_marginBottom="10dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/imgOrder" />
+    tools:context="app.glintcarwash.com.glintapp.MainActivity">
 
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/order_home"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/imgCar" />
+    <ListView
+        android:id="@+id/lstOrders"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="15dip"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="15dip"
+        android:divider="@color/white"
+        android:dividerHeight="15dip"></ListView>
+
 </RelativeLayout>

@@ -2,6 +2,7 @@ package app.glintcarwash.com.glintapp;
 
 import android.app.ActionBar;
 import android.app.Dialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -11,12 +12,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import global.ProgressWheel;
+import model.CarInfo;
+import model.OrderInfo;
 
 /**
  * Created by ACER on 05-04-2016.
@@ -24,8 +31,8 @@ import global.ProgressWheel;
 public class OrdersFragment extends Fragment {
     Dialog DialogForTransaction;
     ProgressWheel progressWheel;
-
     ArrayList<Integer> m_draw = new ArrayList<Integer>();
+    ListView lstOrders;
 
     public static OrdersFragment getInstance() {
         OrdersFragment fragment = new OrdersFragment();
@@ -36,8 +43,7 @@ public class OrdersFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        return inflater.inflate(R.layout.activity_splash, null);
+        return inflater.inflate(R.layout.activity_order, null);
     }
 
     @Override
@@ -48,7 +54,26 @@ public class OrdersFragment extends Fragment {
         m_draw.add(Color.parseColor("#FFB347"));
         m_draw.add(Color.parseColor("#03C03C"));
         m_draw.add(Color.parseColor("#FDFD96"));
-
+        lstOrders = (ListView) view.findViewById(R.id.lstOrders);
+        ArrayList<OrderInfo> m_temp = new ArrayList<OrderInfo>();
+        for (int i = 0; i < 4; i++) {
+            OrderInfo car = new OrderInfo();
+            car.OrderTitle = "Car was job " + i + 1;
+            car.OrderDate = "Feb 15, 2016";
+            car.OrderAddress = "A - 607, Titenium city center, Anand nagar main road, Ahmedabad";
+            if (i == 0) {
+                car.OrderStatus = "In Progress";
+            } else if (i == 1) {
+                car.OrderStatus = "Cancel";
+            } else if (i == 2) {
+                car.OrderStatus = "Completed";
+            } else if (i == 3) {
+                car.OrderStatus = "Pending";
+            }
+            m_temp.add(car);
+        }
+        CustomAdapter adapter = new CustomAdapter(getActivity(), m_temp);
+        lstOrders.setAdapter(adapter);
     }
 
     public void showProgress() {
@@ -122,6 +147,77 @@ public class OrdersFragment extends Fragment {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
+        }
+    }
+
+    public class CustomAdapter extends BaseAdapter {
+
+        //    private List<BookmarkObject> objects = new ArrayList<BookmarkObject>();
+        private List<OrderInfo> objects = new ArrayList<OrderInfo>();
+
+        private Context context;
+        private LayoutInflater layoutInflater;
+
+        public CustomAdapter(Context context, List<OrderInfo> objects) {
+            this.context = context;
+            this.objects = objects;
+            this.layoutInflater = LayoutInflater.from(context);
+        }
+
+        @Override
+        public int getCount() {
+            return objects.size();
+        }
+
+        @Override
+        public OrderInfo getItem(int position) {
+            return objects.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(final int position, View convertView, ViewGroup parent) {
+            convertView = layoutInflater.inflate(R.layout.order_item, null);
+            ViewHolder viewHolder = new ViewHolder();
+            viewHolder.txtOrderTitle = (TextView) convertView.findViewById(R.id.txtOrderTitle);
+            viewHolder.txtStatus = (TextView) convertView.findViewById(R.id.txtOrderStatus);
+            viewHolder.txtDate = (TextView) convertView.findViewById(R.id.txtDate);
+            viewHolder.txtLocation = (TextView) convertView.findViewById(R.id.txtAddress);
+            viewHolder.imgStatus = (ImageView) convertView.findViewById(R.id.imgOrderStatus);
+            convertView.setTag(viewHolder);
+            final OrderInfo obj = getItem(position);
+            viewHolder.txtOrderTitle.setText(obj.OrderTitle);
+            viewHolder.txtStatus.setText(obj.OrderStatus);
+            viewHolder.txtDate.setText(obj.OrderDate);
+            viewHolder.txtLocation.setText(obj.OrderAddress);
+            if (obj.OrderStatus.equalsIgnoreCase("In Progress")) {
+                viewHolder.imgStatus.setImageResource(R.drawable.progress);
+            } else if (obj.OrderStatus.equalsIgnoreCase("Completed")) {
+                viewHolder.imgStatus.setImageResource(R.drawable.done);
+            } else if (obj.OrderStatus.equalsIgnoreCase("Cancel")) {
+                viewHolder.imgStatus.setImageResource(R.drawable.cancle);
+            } else if (obj.OrderStatus.equalsIgnoreCase("Pending")) {
+                viewHolder.imgStatus.setImageResource(R.drawable.pending);
+            }
+
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                    Intent color_picker = new Intent(getActivity(),ColorPickerActivity.class);
+//                    startActivity(color_picker);
+                }
+            });
+            return convertView;
+        }
+
+
+        protected class ViewHolder {
+            private TextView txtOrderTitle, txtStatus, txtDate, txtLocation;
+            ImageView imgStatus;
         }
     }
 }

@@ -5,7 +5,7 @@
 
     <!--Drawer========-->
     <string-array name="nav_drawer_items">
-        <item>Talking Bookz</item>
+        <item>Hiren</item>
         <item>Home</item>
         <item>Profile</item>
         <item>Notification</item>
