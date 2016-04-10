@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -21,9 +22,10 @@ import global.ProgressWheel;
 /**
  * Created by ACER on 05-04-2016.
  */
-public class HelpFragment extends Fragment {
+public class HelpFragment extends Fragment implements View.OnClickListener {
     Dialog DialogForTransaction;
     ProgressWheel progressWheel;
+    RelativeLayout rlOne, rlOneSub, rlTwo, rlTwoSub, rlThree, rlThreeSub, rlFour, rlFourSub;
 
     ArrayList<Integer> m_draw = new ArrayList<Integer>();
 
@@ -37,7 +39,26 @@ public class HelpFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.activity_splash, null);
+        View v = inflater.inflate(R.layout.help_fragment, container, false);
+        rlOne = (RelativeLayout) v.findViewById(R.id.rlOne);
+        rlOneSub = (RelativeLayout) v.findViewById(R.id.rlOneSub);
+
+        rlTwo = (RelativeLayout) v.findViewById(R.id.rlTwo);
+        rlTwoSub = (RelativeLayout) v.findViewById(R.id.rlOTwoSub);
+
+        rlThree = (RelativeLayout) v.findViewById(R.id.rlThree);
+        rlThreeSub = (RelativeLayout) v.findViewById(R.id.rlOThree);
+
+        rlFour = (RelativeLayout) v.findViewById(R.id.rlFour);
+        rlFourSub = (RelativeLayout) v.findViewById(R.id.rlFourSub);
+
+        rlOne.setOnClickListener(this);
+        rlTwo.setOnClickListener(this);
+        rlThree.setOnClickListener(this);
+        rlFour.setOnClickListener(this);
+
+        AllGone();
+        return v;
     }
 
     @Override
@@ -112,6 +133,7 @@ public class HelpFragment extends Fragment {
             DialogForTransaction = null;
         }
     }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -123,4 +145,34 @@ public class HelpFragment extends Fragment {
         if (isVisibleToUser) {
         }
     }
+
+    @Override
+    public void onClick(View v) {
+        if (v==rlOne){
+            MaintainVisibility(rlOneSub,rlFourSub,rlThreeSub,rlTwoSub);
+        }else if(v==rlTwo){
+            MaintainVisibility(rlTwoSub,rlFourSub,rlThreeSub,rlOneSub);
+        }else if(v==rlThree){
+            MaintainVisibility(rlThreeSub,rlFourSub,rlOneSub,rlTwoSub);
+        }else if(v==rlFour){
+            MaintainVisibility(rlFourSub,rlOneSub,rlThreeSub,rlTwoSub);
+        }
+
+    }
+
+
+    public void MaintainVisibility(RelativeLayout rlShow, RelativeLayout rlHide1, RelativeLayout rlHide2, RelativeLayout rlHide3){
+        rlShow.setVisibility(View.VISIBLE);
+        rlHide1.setVisibility(View.GONE);
+        rlHide3.setVisibility(View.GONE);
+        rlHide2.setVisibility(View.GONE);
+    }
+
+    public void AllGone(){
+        rlOneSub.setVisibility(View.GONE);
+        rlTwoSub.setVisibility(View.GONE);
+        rlThreeSub.setVisibility(View.GONE);
+        rlFourSub.setVisibility(View.GONE);
+    }
+
 }

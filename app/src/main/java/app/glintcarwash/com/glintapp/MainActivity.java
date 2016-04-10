@@ -229,7 +229,7 @@ public class MainActivity extends BaseActivity {
                 fragment = new ContactUsFragment();
                 break;
             case 8:
-                fragment = new MessagesFragment();
+                fragment = new InboxFragment();
                 //logout
 //                if (UserInfo.getUser() == null) {
 //                    Intent i = new Intent(HomeActivity.this, LoginActivity.class);
