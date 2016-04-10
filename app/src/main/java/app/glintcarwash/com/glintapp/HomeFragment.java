@@ -2,6 +2,7 @@ package app.glintcarwash.com.glintapp;
 
 import android.app.ActionBar;
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -21,10 +23,11 @@ import global.ProgressWheel;
 /**
  * Created by ACER on 05-04-2016.
  */
-public class HomeFragment extends Fragment {
+
+public class HomeFragment extends Fragment implements View.OnClickListener{
     Dialog DialogForTransaction;
     ProgressWheel progressWheel;
-
+    ImageView imgCar,imgOrder;
     ArrayList<Integer> m_draw = new ArrayList<Integer>();
 
     public static HomeFragment getInstance() {
@@ -37,12 +40,16 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.activity_splash, null);
+        return inflater.inflate(R.layout.fragment_home, null);
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onViewCreated(View v, Bundle savedInstanceState) {
+        super.onViewCreated(v, savedInstanceState);
+        imgOrder = (ImageView) v.findViewById(R.id.imgOrder);
+        imgCar = (ImageView) v.findViewById(R.id.imgCar);
+        imgOrder.setOnClickListener(this);
+        imgCar.setOnClickListener(this);
         m_draw.add(Color.parseColor("#779ECB"));
         m_draw.add(Color.parseColor("#FFD1DC"));
         m_draw.add(Color.parseColor("#FFB347"));
@@ -121,6 +128,17 @@ public class HomeFragment extends Fragment {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v==imgCar){
+            Intent color_picker = new Intent(getActivity(), BookOrderActivity.class);
+            startActivity(color_picker);
+        }else if(v==imgOrder){
+            Intent color_picker = new Intent(getActivity(), BookOrderActivity.class);
+            startActivity(color_picker);
         }
     }
 }

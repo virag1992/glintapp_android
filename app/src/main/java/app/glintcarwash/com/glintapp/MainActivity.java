@@ -222,7 +222,7 @@ public class MainActivity extends BaseActivity {
                 // }
                 break;
             case 6:
-                fragment = new OrderActivity();
+                fragment = new OrdersFragment();
                 break;
             case 7:
                 //Cart

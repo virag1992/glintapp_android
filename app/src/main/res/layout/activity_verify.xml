@@ -4,12 +4,31 @@
     android:layout_height="match_parent"
     android:background="@color/backgroumd"
     android:orientation="vertical" >
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:background="@color/actionbar_bg"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ToolBarStyle">
 
+        <TextView
+            android:id="@+id/tvtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Verify"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/actionbar_font" />
+    </android.support.v7.widget.Toolbar>
     <ImageView
         android:id="@+id/imgLogoLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_below="@+id/toolbar"
         android:layout_margin="15dip"
         android:adjustViewBounds="true"
         android:src="@drawable/logo" />
@@ -35,6 +54,7 @@
         android:layout_marginLeft="15dip"
         android:layout_marginRight="15dip"
         android:padding="5dip"
+        android:visibility="gone"
         android:text="@string/verifytext"
         android:textColor="#5F5F61" />
 
