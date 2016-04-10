@@ -17,6 +17,9 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.cooltechworks.creditcarddesign.*;
+import com.cooltechworks.creditcarddesign.CreditCardView;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -137,11 +140,25 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if(v==llAddcard){
-            Intent start = new Intent(getActivity(),CreditCardActivity.class);
-            startActivity(start);
+//            Intent start = new Intent(getActivity(),CreditCardActivity.class);
+//            startActivity(start);
+            Intent intent = new Intent(getActivity(), CardEditActivity.class);
+            startActivityForResult(intent, 0);
         }else if(v==llAddcar){
             Intent start = new Intent(getActivity(),AddCarActivity.class);
             startActivity(start);
         }
+    }
+
+    public void onActivityResult(int reqCode, int resultCode, Intent data) {
+
+        if(resultCode == getActivity().RESULT_OK) {
+            String name = data.getStringExtra(com.cooltechworks.creditcarddesign.CreditCardUtils.EXTRA_CARD_HOLDER_NAME);
+            String cardNumber = data.getStringExtra(com.cooltechworks.creditcarddesign.CreditCardUtils.EXTRA_CARD_NUMBER);
+            String expiry = data.getStringExtra(com.cooltechworks.creditcarddesign.CreditCardUtils.EXTRA_CARD_EXPIRY);
+            String cvv = data.getStringExtra(com.cooltechworks.creditcarddesign.CreditCardUtils.EXTRA_CARD_CVV);
+        }
+
+
     }
 }
