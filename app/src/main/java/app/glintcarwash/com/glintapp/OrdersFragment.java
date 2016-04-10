@@ -3,6 +3,7 @@ package app.glintcarwash.com.glintapp;
 import android.app.ActionBar;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -198,19 +199,27 @@ public class OrdersFragment extends Fragment {
                 viewHolder.imgStatus.setImageResource(R.drawable.progress);
             } else if (obj.OrderStatus.equalsIgnoreCase("Completed")) {
                 viewHolder.imgStatus.setImageResource(R.drawable.done);
+                convertView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent color_picker = new Intent(getActivity(), OrderDetailActivity.class);
+                        startActivity(color_picker);
+                    }
+                });
             } else if (obj.OrderStatus.equalsIgnoreCase("Cancel")) {
                 viewHolder.imgStatus.setImageResource(R.drawable.cancle);
             } else if (obj.OrderStatus.equalsIgnoreCase("Pending")) {
                 viewHolder.imgStatus.setImageResource(R.drawable.pending);
+                convertView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent color_picker = new Intent(getActivity(), PendigOrderActivity.class);
+                        startActivity(color_picker);
+                    }
+                });
             }
 
-            convertView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-//                    Intent color_picker = new Intent(getActivity(),ColorPickerActivity.class);
-//                    startActivity(color_picker);
-                }
-            });
+
             return convertView;
         }
 
