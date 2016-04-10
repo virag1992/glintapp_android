@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@color/backgroumd"
     android:layout_height="match_parent">
 
     <EditText
@@ -10,7 +11,7 @@
         android:layout_above="@+id/btnSendContactUs"
         android:layout_alignParentTop="true"
         android:layout_margin="15dp"
-        android:background="#E8E8E8"
+        android:background="@drawable/contact_us_bg"
         android:gravity="top" />
 
     <Button
