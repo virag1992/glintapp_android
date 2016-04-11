@@ -11,10 +11,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -66,6 +68,18 @@ public class MainActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        int h = metrics.heightPixels;
+        int w = metrics.widthPixels;
+        ViewGroup.LayoutParams p = mDrawerList.getLayoutParams();
+        p.width = w - 100;
+        mDrawerList.setLayoutParams(p);
+    }
+
     public void setActionBar() {
 //        RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.app_bar);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -74,6 +88,8 @@ public class MainActivity extends BaseActivity {
 
 //        getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_action_list));
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setHomeButtonEnabled(true);
         tvtitle = (TextView) toolbar.findViewById(R.id.tvtitle);
         //tvtitle.setText(getResources().getString(R.string.home_title));
         Drawable upArrow;
@@ -176,6 +192,15 @@ public class MainActivity extends BaseActivity {
                 // calling onPrepareOptionsMenu() to hide action bar icons
                 invalidateOptionsMenu();
             }
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                super.onDrawerSlide(drawerView, slideOffset);
+                View v=findViewById(R.id.container_body);
+                v.setTranslationX(slideOffset * drawerView.getWidth());
+                toolbar.setTranslationX(slideOffset * drawerView.getWidth());
+                mDrawerLayout.bringChildToFront(drawerView);
+                mDrawerLayout.requestLayout();
+            }
         };
         setTitleForAction(mTitle.toString());
         mDrawerLayout.setDrawerListener(mDrawerToggle);
@@ -200,6 +225,7 @@ public class MainActivity extends BaseActivity {
         switch (position) {
             case 0:
 //                fragment = new MyCarFragment();
+                fragment = new ProfileFragment();
                 break;
             case 1:
                 fragment = new HomeFragment();

@@ -5,19 +5,21 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="170dp"
         android:background="@drawable/workavaibility_bg">
 
         <TextView
             android:id="@+id/topdiv"
             android:layout_width="match_parent"
             android:layout_height="1dip"
+            android:layout_marginRight="2dip"
             android:background="#AEAEAE" />
 
         <ImageView
             android:id="@+id/imgCar"
             android:layout_width="150dip"
-            android:layout_height="195dip"
+            android:layout_height="165dip"
+            android:layout_marginTop="2dip"
             android:scaleType="fitXY"
             android:src="@drawable/dummy_image" />
 
@@ -53,6 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dip"
                 android:layout_alignParentBottom="true"
+                android:layout_marginRight="2dip"
                 android:background="#AEAEAE" />
 
             <RelativeLayout
@@ -82,6 +85,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dip"
                 android:layout_alignParentBottom="true"
+                android:layout_marginRight="2dip"
                 android:background="#AEAEAE" />
 
             <RelativeLayout
@@ -110,6 +114,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dip"
                 android:layout_alignParentBottom="true"
+                android:layout_marginRight="2dip"
                 android:background="#AEAEAE" />
 
             <RelativeLayout

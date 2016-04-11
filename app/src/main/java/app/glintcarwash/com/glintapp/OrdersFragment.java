@@ -197,6 +197,13 @@ public class OrdersFragment extends Fragment {
             viewHolder.txtLocation.setText(obj.OrderAddress);
             if (obj.OrderStatus.equalsIgnoreCase("In Progress")) {
                 viewHolder.imgStatus.setImageResource(R.drawable.progress);
+                convertView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent color_picker = new Intent(getActivity(), OrderDetailActivity.class);
+                        startActivity(color_picker);
+                    }
+                });
             } else if (obj.OrderStatus.equalsIgnoreCase("Completed")) {
                 viewHolder.imgStatus.setImageResource(R.drawable.done);
                 convertView.setOnClickListener(new View.OnClickListener() {
@@ -208,6 +215,13 @@ public class OrdersFragment extends Fragment {
                 });
             } else if (obj.OrderStatus.equalsIgnoreCase("Cancel")) {
                 viewHolder.imgStatus.setImageResource(R.drawable.cancle);
+                convertView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent color_picker = new Intent(getActivity(), OrderDetailActivity.class);
+                        startActivity(color_picker);
+                    }
+                });
             } else if (obj.OrderStatus.equalsIgnoreCase("Pending")) {
                 viewHolder.imgStatus.setImageResource(R.drawable.pending);
                 convertView.setOnClickListener(new View.OnClickListener() {

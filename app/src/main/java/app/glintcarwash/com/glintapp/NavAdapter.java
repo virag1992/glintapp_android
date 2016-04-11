@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -52,7 +53,15 @@ public class NavAdapter extends BaseAdapter {
                     context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             convertView = mInflater.inflate(R.layout.list_item, null);
         }
-
+        RelativeLayout rlFirst = (RelativeLayout) convertView.findViewById(R.id.rlFirst);
+        RelativeLayout rlother = (RelativeLayout) convertView.findViewById(R.id.rlOther);
+        if (position == 0) {
+            rlFirst.setVisibility(View.VISIBLE);
+            rlother.setVisibility(View.GONE);
+        } else {
+            rlother.setVisibility(View.VISIBLE);
+            rlFirst.setVisibility(View.GONE);
+        }
         ImageView imgIcon = (ImageView) convertView.findViewById(R.id.icon);
         TextView txtTitle = (TextView) convertView.findViewById(R.id.title);
         txtTitle.setText(navDrawerItems.get(position).getTitle());
@@ -71,43 +80,6 @@ public class NavAdapter extends BaseAdapter {
             imgIcon.setImageResource(navDrawerItems.get(position).getIcon());
         }
 
-//        if (position == navDrawerItems.size() - 2) {
-//            if (UserInfo.getUser() == null) {
-//                txtTitle.setText("LOGIN");
-//
-//                Drawable upArrow;
-//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//                    upArrow = context.getResources().getDrawable(R.drawable.login_ic, context.getTheme());
-//                } else {
-//                    upArrow = context.getResources().getDrawable(R.drawable.login_ic);
-//                }
-//                upArrow.setColorFilter(Color.parseColor("#33cc90"), PorterDuff.Mode.SRC_ATOP);
-//
-////                imgIcon.setImageResource(R.drawable.login_ic);
-//                imgIcon.setImageDrawable(upArrow);
-//            } else {
-//                txtTitle.setText("LOGOUT");
-//
-//                Drawable upArrow;
-//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//                    upArrow = context.getResources().getDrawable(R.drawable.logout, context.getTheme());
-//                } else {
-//                    upArrow = context.getResources().getDrawable(R.drawable.logout);
-//                }
-//                upArrow.setColorFilter(Color.parseColor("#33cc90"), PorterDuff.Mode.SRC_ATOP);
-//
-////                imgIcon.setImageResource(R.drawable.login_ic);
-//                imgIcon.setImageDrawable(upArrow);
-//
-////                imgIcon.setImageResource(R.drawable.logout);
-//            }
-//        } else {
-//            txtTitle.setText(navDrawerItems.get(position).getTitle().toUpperCase());
-//        }
-//        if (position == navDrawerItems.size() - 1) {
-//            imgIcon.setVisibility(View.GONE);
-//            txtTitle.setVisibility(View.GONE);
-//        }
 
         return convertView;
     }
