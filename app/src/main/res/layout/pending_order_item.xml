@@ -42,7 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/location" />
+                    android:src="@drawable/order_jobdone" />
 
                 <TextView
                     android:id="@+id/txtOrderTitle"
@@ -68,7 +68,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/location" />
+                    android:src="@drawable/order_location" />
 
                 <TextView
                     android:id="@+id/txtAddress"
@@ -90,7 +90,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/nickname" />
+                    android:src="@drawable/order_star" />
                 <RatingBar
                     android:id="@+id/rbrate"
                     style="?android:attr/ratingBarStyleSmall"
