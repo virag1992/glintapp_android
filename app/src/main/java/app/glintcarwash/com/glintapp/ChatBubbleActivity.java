@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -26,6 +27,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Build;
@@ -36,8 +38,10 @@ import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.provider.MediaStore.Images;
 import android.provider.MediaStore.MediaColumns;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
@@ -50,14 +54,14 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class ChatBubbleActivity extends Activity implements OnClickListener {
-	private static final String TAG = "ChatActivity";
+public class ChatBubbleActivity extends BaseActivity implements OnClickListener {
+    private static final String TAG = "ChatActivity";
 
-	private ChatArrayAdapter chatArrayAdapter;
-	private ListView listView;
-	private EditText chatText;
-	private Button buttonSend;
-//	ByteArrayOutputStream bytes;
+    private ChatArrayAdapter chatArrayAdapter;
+    private ListView listView;
+    private EditText chatText;
+    private Button buttonSend;
+    //	ByteArrayOutputStream bytes;
 //	private static final int PICK_FROM_CAMERA = 1;
 //	private static final int CROP_FROM_CAMERA = 2;
 //	private static final int PICK_FROM_FILE = 3;
@@ -66,72 +70,129 @@ public class ChatBubbleActivity extends Activity implements OnClickListener {
 //	Bitmap photo;
 //	String filepath;
 //	Intent intent;
-	List<ChatMessage> c_obj = new ArrayList<ChatMessage>();
-//	private Uri mImageCaptureUri;
-	private boolean side = false;
-//	boolean noImg = false;
+    List<ChatMessage> c_obj = new ArrayList<ChatMessage>();
+    //	private Uri mImageCaptureUri;
+    private boolean side = false;
+    //	boolean noImg = false;
 //	boolean img = true;
+    public Toolbar toolbar;
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		Intent i = getIntent();
-		setContentView(R.layout.activity_chat);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Intent i = getIntent();
+        setContentView(R.layout.activity_chat);
+        setActionBar();
+        initDrawer(savedInstanceState);
+        buttonSend = (Button) findViewById(R.id.buttonSend);
+        listView = (ListView) findViewById(R.id.listView1);
 
-		buttonSend = (Button) findViewById(R.id.buttonSend);
-		listView = (ListView) findViewById(R.id.listView1);
+        chatArrayAdapter = new ChatArrayAdapter(getApplicationContext(),
+                R.layout.activity_chat_singlemessage);
+        listView.setAdapter(chatArrayAdapter);
 
-		chatArrayAdapter = new ChatArrayAdapter(getApplicationContext(),
-				R.layout.activity_chat_singlemessage);
-		listView.setAdapter(chatArrayAdapter);
+        chatText = (EditText) findViewById(R.id.chatText);
+        chatText.setOnKeyListener(new OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_DOWN)
+                        && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    return sendChatMessage();
+                }
+                return false;
+            }
+        });
+        buttonSend.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                sendChatMessage();
+            }
+        });
 
-		chatText = (EditText) findViewById(R.id.chatText);
-		chatText.setOnKeyListener(new OnKeyListener() {
-			public boolean onKey(View v, int keyCode, KeyEvent event) {
-				if ((event.getAction() == KeyEvent.ACTION_DOWN)
-						&& (keyCode == KeyEvent.KEYCODE_ENTER)) {
-					return sendChatMessage();
-				}
-				return false;
-			}
-		});
-		buttonSend.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View arg0) {
-				sendChatMessage();
-			}
-		});
+        listView.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
+        listView.setAdapter(chatArrayAdapter);
 
-		listView.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
-		listView.setAdapter(chatArrayAdapter);
+        // to scroll the list view to bottom on data change
+        chatArrayAdapter.registerDataSetObserver(new DataSetObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+                listView.setSelection(chatArrayAdapter.getCount() - 1);
+            }
+        });
 
-		// to scroll the list view to bottom on data change
-		chatArrayAdapter.registerDataSetObserver(new DataSetObserver() {
-			@Override
-			public void onChanged() {
-				super.onChanged();
-				listView.setSelection(chatArrayAdapter.getCount() - 1);
-			}
-		});
+    }
 
-	}
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+//                mDrawerLayout.openDrawer(Gravity.LEFT);
+                finish();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
-	private boolean sendChatMessage() {
-		chatArrayAdapter.add(new ChatMessage(side, chatText.getText()
-				.toString()));
-		chatText.setText("");
-		side = !side;
-		return true;
-	}
+    public void setActionBar() {
+//        RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.app_bar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-	@Override
-	public void onClick(View v) {
+//        getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_action_list));
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        //tvtitle.setText(getResources().getString(R.string.home_title));
+        Drawable upArrow;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            upArrow = getResources().getDrawable(R.drawable.back, ChatBubbleActivity.this.getTheme());
+        } else {
+            upArrow = getResources().getDrawable(R.drawable.back);
+        }
+
+//        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
+        //upArrow.setColorFilter(Color.parseColor("#33cc90"), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+    }
+
+
+    @Override
+    public void setSupportActionBar(Toolbar toolbar) {
+        super.setSupportActionBar(toolbar);
+    }
+
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+//        toggle.syncState();
+
+    }
+
+
+    private void initDrawer(Bundle savedInstanceState) {
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
+    }
+
+    private boolean sendChatMessage() {
+        chatArrayAdapter.add(new ChatMessage(side, chatText.getText()
+                .toString()));
+        chatText.setText("");
+        side = !side;
+        return true;
+    }
+
+    @Override
+    public void onClick(View v) {
 //		if (v == buttonImage) {
 //			showDialogForImage();
 //
 //		}
-	}
-
+    }
 
 
 }
