@@ -35,7 +35,6 @@ import android.widget.TextView;
 
 
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -53,8 +52,8 @@ import java.util.Map.Entry;
 import java.util.TimeZone;
 import java.util.regex.Pattern;
 
-import app.glintcarwash.com.glintapp.GlintApplication;
-import app.glintcarwash.com.glintapp.R;
+import app.glintcarwash.com.glintworkerapp.GlintApplication;
+import app.glintcarwash.com.glintworkerapp.R;
 
 
 public class Global {

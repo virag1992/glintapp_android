@@ -15,7 +15,7 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
 
-import app.glintcarwash.com.glintapp.R;
+import app.glintcarwash.com.glintworkerapp.R;
 
 
 /**

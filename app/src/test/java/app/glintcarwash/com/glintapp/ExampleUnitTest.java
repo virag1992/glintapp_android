@@ -1,4 +1,4 @@
-package app.glintcarwash.com.glintapp;
+package app.glintcarwash.com.glintworkerapp;
 
 import org.junit.Test;
 

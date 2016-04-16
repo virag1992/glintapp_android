@@ -8,7 +8,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 
-import app.glintcarwash.com.glintapp.R;
+import app.glintcarwash.com.glintworkerapp.R;
 
 /**
  * Created by Dharmesh on 9/12/2015.

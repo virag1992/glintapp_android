@@ -23,7 +23,7 @@
             android:visibility="gone"
             android:layout_height="wrap_content"/>
 
-        <app.glintcarwash.com.glintapp.GradientView
+        <app.glintcarwash.com.glintworkerapp.GradientView
             android:id="@+id/top"
             app:radius="@dimen/radius"
             app:pointerDrawable="@drawable/pointer_simple"
@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"/>
 
-        <app.glintcarwash.com.glintapp.GradientView
+        <app.glintcarwash.com.glintworkerapp.GradientView
             android:id="@+id/bottom"
             android:background="@drawable/gradient_background"
             android:layout_margin="@dimen/gap_large"
